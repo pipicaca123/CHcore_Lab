@@ -91,9 +91,9 @@ void init_boot_pt(void)
         /* Step 1: set L0 and L1 page table entry */
         // view PPT p.36: TTBR value meanings. Also in ARM Architecture Reference P.4840.
         vaddr = KERNEL_VADDR + PHYSMEM_START;
-        boot_ttbr1_l0[GET_L0_INDEX(vaddr)] = ((u64) boot_ttbr1_l0) | IS_TABLE
+        boot_ttbr1_l0[GET_L0_INDEX(vaddr)] = ((u64) boot_ttbr1_l1) | IS_TABLE
                                              | IS_VALID | NG; 
-        boot_ttbr1_l1[GET_L1_INDEX(vaddr)] = ((u64) boot_ttbr1_l1) | IS_TABLE
+        boot_ttbr1_l1[GET_L1_INDEX(vaddr)] = ((u64) boot_ttbr1_l2) | IS_TABLE
                                              | IS_VALID | NG;
         /* Step 2: map PHYSMEM_START ~ PERIPHERAL_BASE with 2MB granularity */
         for (vaddr = KERNEL_VADDR + PHYSMEM_START; vaddr < KERNEL_VADDR + PERIPHERAL_BASE; vaddr += SIZE_2M) {
