@@ -25,8 +25,10 @@
 #define IS_ALIGNED(x, a) (((x) & ((typeof(x))(a)-1)) == 0)
 
 #define BIT(x) (1ULL << (x))
-
+//Lou: https://www.ptt.cc/bbs/C_and_CPP/M.1279560470.A.217.html
+// offsetof: 尋找 type中 field的offset
 #define offsetof(TYPE, MEMBER) ((u64) & ((TYPE *)0)->MEMBER)
+// container_of: 尋找 type中 field的offset，並回推該type的地址。
 #define container_of(ptr, type, field) \
         ((type *)((void *)(ptr) - (u64)(&(((type *)(0))->field))))
 
